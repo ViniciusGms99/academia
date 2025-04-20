@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Aluno</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Cadastrar Novo Aluno</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Nome completo" required><br>
+        <input type="date" name="birthdate" required><br>
+        <label><input type="checkbox" name="bolsa_atleta"> Bolsa Atleta</label><br>
+        <label><input type="checkbox" name="mensalidade_pago"> Mensalidade Paga</label><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <p><a href="/dashboard">Voltar</a></p>
+</body>
+</html>

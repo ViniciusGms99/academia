@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Painel da Academia</h2>
+    <a href="/new-student">Cadastrar Novo Aluno</a> |
+    <a href="/logout">Sair</a>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Aniversário</th>
+            <th>Idade</th>
+            <th>Matrícula</th>
+            <th>Bolsa Atleta</th>
+            <th>Mensalidade</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.birthdate }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.enrollment_date }}</td>
+            <td>{{ 'Sim' if student.bolsa_atleta else 'Não' }}</td>
+            <td>{{ 'Pago' if student.mensalidade_pago else 'Não pago' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
