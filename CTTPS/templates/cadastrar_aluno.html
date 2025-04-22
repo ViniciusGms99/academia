@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Cadastrar Aluno{% endblock %}
+
+{% block content %}
+<h1 class="titulo-centralizado"><i class="fas fa-user-plus"></i> Cadastrar Novo Aluno</h1>
+
+<div class="form-container">
+    <form method="POST" class="form-grid">
+
+        <div>
+            <label for="nome">Nome completo</label>
+            <input type="text" name="nome" required>
+        </div>
+
+        <div>
+            <label for="nascimento">Data de Nascimento</label>
+            <input type="date" name="nascimento" required>
+        </div>
+
+        <div>
+            <label for="telefone">Telefone</label>
+            <input type="text" name="telefone">
+        </div>
+
+        <div>
+            <label for="sexo">Sexo</label>
+            <select name="sexo" required>
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="modalidade">Modalidade</label>
+            <input type="text" name="modalidade" required>
+        </div>
+
+        <div class="col-span-2">
+            <label for="observacoes">Observações</label>
+            <textarea name="observacoes" rows="3"></textarea>
+        </div>
+
+        <div class="col-span-2 text-center mt-4">
+            <button type="submit" class="btn"><i class="fas fa-save"></i> Cadastrar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

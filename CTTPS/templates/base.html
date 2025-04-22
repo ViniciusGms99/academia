@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Academia{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo-area">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+            <span class="nome-academia">Academia</span>
+        </div>
+        <nav class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Início</a>
+            <a href="{{ url_for('alunos') }}">Alunos</a>
+            <a href="{{ url_for('eventos') }}">Eventos</a>  <!-- Linha adicionada -->
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

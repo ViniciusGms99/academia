@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Evento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Evento</h1>
+        <form method="POST" class="card">
+            <label for="nome">Nome do Evento:</label>
+            <input type="text" name="nome" id="nome" value="{{ evento.nome }}" required>
+
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" value="{{ evento.data }}" required>
+
+            <label for="observacoes">Observações:</label>
+            <textarea name="observacoes" id="observacoes" rows="4">{{ evento.observacoes or '' }}</textarea>
+
+            <button type="submit" class="btn">Salvar Alterações</button>
+            <a href="{{ url_for('eventos') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

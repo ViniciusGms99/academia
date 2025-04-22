@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Alunos{% endblock %}
+
+{% block content %}
+<h1 class="titulo-centralizado"><i class="fas fa-users"></i> Gerenciamento de Alunos</h1>
+
+<!-- Filtro de busca e botão alinhados -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+    <form method="GET" action="{{ url_for('alunos') }}" style="position: relative; width: 250px;">
+        <i class="fas fa-search" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #888;"></i>
+        <input 
+            type="text" 
+            name="nome" 
+            placeholder="Buscar por nome..." 
+            class="input" 
+            value="{{ request.args.get('nome', '') }}" 
+            style="width: 100%; padding: 0.5rem 0.5rem 0.5rem 2rem; border-radius: 8px; border: 1px solid #ccc;"
+        >
+    </form>
+    <a href="{{ url_for('cadastrar_aluno') }}" class="btn"><i class="fas fa-user-plus"></i> Novo Aluno</a>
+</div>
+
+<div class="grid-2">
+
+<!-- Coluna Alunos Ativos -->
+<div>
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 class="titulo-centralizado text-green-600"><i class="fas fa-user-check"></i> Alunos Ativos</h2>
+        <p class="contador text-center text-green-500 font-bold">Total: {{ ativos|length }}</p>
+        {% for aluno in ativos %}
+        <div class="card evento-card" style="margin-top: 1rem; border-left: 5px solid #16a34a;">
+            <p><strong>Nome:</strong> {{ aluno['nome'] }}</p>
+            <p><strong>Modalidade:</strong> {{ aluno['modalidade'] }}</p>
+            <p><strong>Nascimento:</strong> {{ aluno['data_nascimento'] }}</p>
+            <p><strong>Telefone:</strong> {{ aluno['telefone'] }}</p>
+            <p><strong>Sexo:</strong> {{ aluno['sexo'] }}</p>
+            <p><strong>Observações:</strong> {{ aluno['observacoes'] }}</p>
+            <div class="acoes">
+                <a class="btn edit" href="{{ url_for('editar_aluno', id=aluno['id']) }}"><i class="fas fa-edit"></i> Editar</a>
+                <a class="btn delete" href="{{ url_for('deletar_aluno', id=aluno['id']) }}" onclick="return confirm('Deseja realmente excluir este aluno?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-gray-500 text-center">Nenhum aluno ativo.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Coluna Alunos Inativos -->
+<div>
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 class="titulo-centralizado text-red-600"><i class="fas fa-user-times"></i> Alunos Inativos</h2>
+        <p class="contador text-center text-red-500 font-bold">Total: {{ inativos|length }}</p>
+        {% for aluno in inativos %}
+        <div class="card evento-card" style="margin-top: 1rem; border-left: 5px solid #dc2626;">
+            <p><strong>Nome:</strong> {{ aluno['nome'] }}</p>
+            <p><strong>Modalidade:</strong> {{ aluno['modalidade'] }}</p>
+            <p><strong>Nascimento:</strong> {{ aluno['data_nascimento'] }}</p>
+            <p><strong>Telefone:</strong> {{ aluno['telefone'] }}</p>
+            <p><strong>Sexo:</strong> {{ aluno['sexo'] }}</p>
+            <p><strong>Observações:</strong> {{ aluno['observacoes'] }}</p>
+            <div class="acoes">
+                <a class="btn edit" href="{{ url_for('editar_aluno', id=aluno['id']) }}"><i class="fas fa-edit"></i> Editar</a>
+                <a class="btn delete" href="{{ url_for('deletar_aluno', id=aluno['id']) }}" onclick="return confirm('Deseja realmente excluir este aluno?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-gray-500 text-center">Nenhum aluno inativo.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+{% endblock %}

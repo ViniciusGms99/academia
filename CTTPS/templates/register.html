@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Academia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2 class="login-title">Criar Conta</h2>
+
+        {% if erro %}
+            <div class="erro-msg">{{ erro }}</div>
+        {% endif %}
+
+        <form method="POST" class="login-form">
+            <input type="text" name="usuario" placeholder="Usuário" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit" class="login-btn">Cadastrar</button>
+        </form>
+
+        <div class="login-footer">
+            Já tem uma conta? <a href="{{ url_for('login') }}">Faça login</a>
+        </div>
+    </div>
+</body>
+</html>

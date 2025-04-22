@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Eventos{% endblock %}
+
+{% block content %}
+<h1 class="titulo-centralizado"><i class="fas fa-calendar-alt"></i> Eventos</h1>
+
+<div class="grid-2">
+
+    <!-- Seção de Campeonatos -->
+    <div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2 class="titulo-centralizado"><i class="fas fa-trophy"></i> Cadastrar Campeonato</h2>
+            <form action="{{ url_for('cadastrar_evento') }}" method="POST">
+                <input type="hidden" name="tipo" value="campeonato">
+                <label>Nome do Campeonato:</label>
+                <input type="text" name="nome" required>
+                <label>Data:</label>
+                <input type="date" name="data" required>
+                <label>Observações (endereço, horário etc):</label>
+                <textarea name="observacoes"></textarea>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 class="titulo-centralizado"><i class="fas fa-list"></i> Campeonatos Cadastrados</h3>
+            {% for evento in campeonatos %}
+            <div class="card evento-card" style="margin-top: 1rem;">
+                <p><strong>{{ evento.nome }}</strong> ({{ evento.data }})</p>
+                {% if evento.observacoes %}
+                    <p class="observacoes">{{ evento.observacoes }}</p>
+                {% endif %}
+                <div class="acoes">
+                    <a class="btn edit" href="{{ url_for('editar_evento', id=evento.id) }}"><i class="fas fa-edit"></i> Editar</a>
+                    <a class="btn delete" href="{{ url_for('excluir_evento', id=evento.id) }}" onclick="return confirm('Tem certeza que deseja excluir?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Seção de Exames -->
+    <div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2 class="titulo-centralizado"><i class="fas fa-user-graduate"></i> Cadastrar Exame de Faixa</h2>
+            <form action="{{ url_for('cadastrar_evento') }}" method="POST">
+                <input type="hidden" name="tipo" value="exame">
+                <label>Nome do Exame:</label>
+                <input type="text" name="nome" required>
+                <label>Data:</label>
+                <input type="date" name="data" required>
+                <label>Observações (endereço, horário etc):</label>
+                <textarea name="observacoes"></textarea>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 class="titulo-centralizado"><i class="fas fa-list"></i> Exames Cadastrados</h3>
+            {% for evento in exames %}
+            <div class="card evento-card" style="margin-top: 1rem;">
+                <p><strong>{{ evento.nome }}</strong> ({{ evento.data }})</p>
+                {% if evento.observacoes %}
+                    <p class="observacoes">{{ evento.observacoes }}</p>
+                {% endif %}
+                <div class="acoes">
+                    <a class="btn edit" href="{{ url_for('editar_evento', id=evento.id) }}"><i class="fas fa-edit"></i> Editar</a>
+                    <a class="btn delete" href="{{ url_for('excluir_evento', id=evento.id) }}" onclick="return confirm('Tem certeza que deseja excluir?')"><i class="fas fa-trash-alt"></i> Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

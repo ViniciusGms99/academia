@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Início</h1>
+
+    <div class="grid-3">
+        <div class="card" style="text-align: center;">
+            <i class='bx bx-user-check' style="font-size: 32px; color: #00cc88;"></i>
+            <h3>Alunos Ativos</h3>
+            <p style="font-size: 24px; font-weight: bold;">{{ total_ativos }}</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <i class='bx bx-calendar-event' style="font-size: 32px; color: #00cc88;"></i>
+            <h3>Próximo Evento</h3>
+            {% if proximo_evento %}
+                <p style="font-size: 16px;">{{ proximo_evento.nome }}</p>
+                <p style="font-size: 14px;">{{ proximo_evento.data }}</p>
+            {% else %}
+                <p>Sem eventos</p>
+            {% endif %}
+        </div>
+        <div class="card" style="text-align: center;">
+            <i class='bx bx-money' style="font-size: 32px; color: #00cc88;"></i>
+            <h3>Lucro Mensal</h3>
+            <p style="font-size: 24px; font-weight: bold;">R$ {{ lucro_mensal }}</p>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 40px;">
+        <div class="card">
+            <h2 style="text-align: center;">Aulas de Hoje</h2>
+            {% for aula in aulas_hoje %}
+                <div class="card" style="margin-bottom: 15px; text-align: center;">
+                    <p><strong>{{ aula.modalidade }}</strong></p>
+                    <p>Horário: {{ aula.horario }}</p>
+                </div>
+            {% else %}
+                <p style="text-align: center;">Nenhuma aula para hoje.</p>
+            {% endfor %}
+        </div>
+
+        <div class="card">
+            <h2 style="text-align: center;">Campeonatos Futuros</h2>
+            {% for evento in campeonatos_futuros %}
+                <div class="card" style="margin-bottom: 15px; text-align: center;">
+                    <p><strong>{{ evento.nome }}</strong></p>
+                    <p>{{ evento.data }}</p>
+                </div>
+            {% else %}
+                <p style="text-align: center;">Nenhum campeonato cadastrado.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
